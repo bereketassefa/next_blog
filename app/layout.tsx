@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 // import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
+import { NavigationMenuDemo } from '@/components/navigation'
+import Nav from '@/components/nav'
+import Tags from '@/components/Tags'
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -23,8 +26,14 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
+            
           >
+            <main className='container mx-auto'>
+            <Nav/>
+            
+
             {children}
+            </main>
           </ThemeProvider>
         </body>
     </html>
