@@ -10,18 +10,21 @@ const prisma = new PrismaClient()
 
 export const config = {
   adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: '/auth',
+    
+  },
   theme: {
     logo: "https://next-auth.js.org/img/logo/logo-sm.png",
   },
   providers: [
-    
     GitHub,
   ],
   callbacks: {
     authorized({ request, auth }) {
       
       const { pathname } = request.nextUrl
-      if (pathname === "/blog") return !!auth
+      if (pathname === "/write") return !!auth
       return true
     },
   },
