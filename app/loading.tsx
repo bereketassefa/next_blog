@@ -1,8 +1,13 @@
+import { Spin } from 'antd'
+import { LoaderIcon } from 'lucide-react'
 import React from 'react'
 
 const loading = () => {
   return (
-    <div className='container  mx-auto'>loading</div>
+    <div className='w-full h-screen flex items-center justify-center'>
+      {/* <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} /> */}
+      <Spin indicator={<LoaderIcon />} />
+    </div>
   )
 }
 

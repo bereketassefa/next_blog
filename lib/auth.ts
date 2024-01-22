@@ -27,6 +27,19 @@ export const config = {
       if (pathname === "/write") return !!auth
       return true
     },
+    // async jwt({user , token}){
+    //   if(user){
+    //     token.id = user.id
+    //   }
+    //   return token
+    // },
+    // async session({session , token}){
+    //   // session.user?.id 
+    //   if(session.user){
+    //     session.user.id = token.id as string
+    //   }
+    //   return session
+    // }
   },
 } satisfies NextAuthConfig
 

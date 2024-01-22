@@ -3,6 +3,8 @@ import prisma from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import { Skeleton } from '@/components/ui/skeleton'
 import Nav from '@/components/nav'
+import MDEditor from '@uiw/react-md-editor'
+import BlogRead from '@/components/blogRead'
 const page =async (props: any) => {
     const result = await prisma.blog.findMany({
       where:{
@@ -27,8 +29,9 @@ const page =async (props: any) => {
            return <button className=' px-2 rounded-lg bg-secondary my-1 mr-2' >{each.name}</button>
           })}
         </div>
-      <p className='my-4 mx-7'>{result[0].body}</p>
-      
+      <p className='my-4 mx-7 text-sm'>
+      <BlogRead val={result[0].body}/>
+      </p>
       
     </div>
   )

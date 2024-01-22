@@ -1,27 +1,25 @@
-"use client"
-import { SignIn } from "@/components/auth-components";
+// "use client";
 import Nav from "@/components/nav";
 import Option from "@/components/options";
 import { auth } from "@/lib/auth";
-import { SessionProvider, signIn, useSession } from "next-auth/react";
+import prisma from "@/lib/prisma";
+
 import { redirect } from "next/navigation";
 import React from "react";
-import MDEditor from '@uiw/react-md-editor';
 
 const page = async () => {
-  const {status} = useSession()
-  const [value, setValue] = React.useState("**Hello world!!!**");
-
-  if (status == "unauthenticated") return redirect("/api/auth/signin");
+  const session = await auth();
+  if (!session?.user) return redirect("/api/auth/signin");
+  const result = await prisma.tags.findMany();
   return (
-    
+    <>
+      <div className="container mx-auto">
+        <Nav />
 
-    <div className="container mx-auto">
-      {/* <Nav /> */}
-      <Option/>
-     
-    </div>
-    
+        <Option tags={result} />
+        {/* {JSON.stringify(result)} */}
+      </div>
+    </>
   );
 };
 

@@ -8,6 +8,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import useStatus from "@/store/loading";
 import Nav from "@/components/nav";
+import { Spin } from "antd";
+import { Loader2Icon, LoaderIcon } from "lucide-react";
 
 export default async function Home(props: any) {
   let val;
@@ -39,6 +41,8 @@ export default async function Home(props: any) {
     <>
       <div className="container mx-auto">
         <Nav />
+        
+        
         <Tags param={props.searchParams.tag} />
         <div className="grid gap-9 grid-cols-fluid">
           {result.map((each, index) => {

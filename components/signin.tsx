@@ -1,30 +1,30 @@
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import { Button } from "./ui/button"
-import { auth } from "@/lib/auth"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Button } from "./ui/button";
+import { auth } from "@/lib/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu"
-import { SignIn, SignOut } from "./auth-components"
+} from "./ui/dropdown-menu";
+import { SignIn, SignOut } from "./auth-components";
+import Link from "next/link";
 
 export default async function UserButton() {
-  const session = await auth()
+  const session = await auth();
 
-
-if (!session?.user) return <SignIn />
+  if (!session?.user) return <SignIn />;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative w-8 h-8 rounded-full">
-          <Avatar className="w-8 h-8">
+          <Avatar className="w-8 h-8 border border-primary">
             {session.user.image && (
               <AvatarImage
                 src={session.user.image}
-                alt={session.user.name ?? ""}
+                alt={session.user.name?.slice(0, 2) ?? ""}
               />
             )}
             <AvatarFallback>{session.user.email}</AvatarFallback>
@@ -43,10 +43,15 @@ if (!session?.user) return <SignIn />
           </div>
         </DropdownMenuLabel>
         <DropdownMenuItem>
+          <Button className="w-full text-center" variant={"ghost"} asChild>
+            <Link href={"/profile"}>Profile</Link>
+          </Button>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
           <SignOut />
           {/* Log out */}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

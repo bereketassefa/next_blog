@@ -5,7 +5,6 @@ import Nav from "@/components/nav";
 const loading = () => {
   return (
     <>
-    
       <div className="container mx-auto mt-24">
         <div className="flex justify-center items-center">
           <Skeleton className="w-[280px] h-[20px]"></Skeleton>
